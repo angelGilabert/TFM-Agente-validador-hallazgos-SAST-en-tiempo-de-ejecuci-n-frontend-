@@ -1,0 +1,209 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #E0E0E0;
+  overflow: hidden;
+}
+
+.contenedor {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  height: calc(100vh - 85px);
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 0.75rem;
+}
+
+.item {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.play-section {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  border-radius: 8px;
+  background-color: white;
+  font-weight: bold;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+.img_folder {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backface-visibility: hidden;
+  will-change: transform;
+  cursor: pointer
+}
+
+
+.img_folder:hover,
+.img_folder:focus {
+  transform: scale(1.1);
+}
+
+.text_path {
+  background-color: #f4f7f9;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d9e0;
+  color: #445566;
+  font-size: 0.95rem;
+  font-family: "monospace", monospace;
+  word-break: break-all;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.boton-logo {
+  width: 30%;
+  height: 65%;
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  outline: none;
+}
+
+.boton-logo:hover {
+  background-color: #e5e7eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.boton-logo:active {
+  transform: translateY(0);
+  background-color: #d1d5db;
+}
+
+.boton-logo.activo {
+  background-color: #e0f2fe;
+  border-color: #3b82f6;
+}
+
+
+
+
+
+
+.grupo-ip-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.label-ip {
+  color: #445566;
+  font-size: 1rem;
+  font-family: "monospace", monospace;
+}
+
+.campos-ip {
+  display: flex;
+  align-items: center;
+  background-color: #f9fafb;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: fit-content;
+}
+
+.campo-port {
+  display: flex;
+  align-items: center;
+  background-color: #f9fafb;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 18px;
+  width: fit-content;
+}
+
+/* Cuando el usuario hace clic en cualquier parte del grupo */
+.campo-port:focus-within,
+.campos-ip:focus-within {
+  border-color: #3b82f6;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.octeto-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.input-octeto {
+  width: 35px;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-family: 'monospace', monospace;
+  font-size: 1rem;
+  outline: none;
+  color: #1f2937;
+}
+
+.punto-separador {
+  font-weight: bold;
+  color: #9ca3af;
+  margin: 0 2px;
+  user-select: none;
+}
+
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-button {
+  display: inline-block;
+  animation: spin 3s linear infinite;
+  will-change: transform;
+}
+
+.play_button {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backface-visibility: hidden;
+  will-change: transform;
+  cursor: pointer
+}
+
+
+.play_button:hover,
+.play_button:focus {
+  transform: scale(1.1);
+}

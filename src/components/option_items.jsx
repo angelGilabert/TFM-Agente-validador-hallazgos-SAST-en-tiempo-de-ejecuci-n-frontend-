@@ -1,8 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-export function FolderSelector({ }) {
-
-    const [rutaCarpeta, setRutaCarpeta] = useState('Ninguna carpeta seleccionada');
+export function FolderSelector({ rutaCarpeta, setRutaCarpeta }) {
 
     const manejarSeleccion = async () => {
         const ruta = await window.electronAPI.abrirSelectorCarpeta();
@@ -30,9 +28,7 @@ export function FolderSelector({ }) {
     );
 }
 
-export function AgentSelector({ }) {
-
-    const [actualAgent, setActualAgent] = useState("Gemini");
+export function AgentSelector({ actualAgent, setActualAgent }) {
 
     const select_agent = (num) => {
         if (num == 1) {
@@ -82,7 +78,7 @@ export function AgentSelector({ }) {
     );
 }
 
-export function NeightnLocation({ }) {
+export function NeightnLocation({ agentIp, setAgentIp, agentPort, setAgentPort }) {
     return (
         <div className='item' style={{ justifyContent: "space-between" }}>
             <div style={{ width: "70%", height: "50%", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
@@ -97,15 +93,15 @@ export function NeightnLocation({ }) {
                 gap: "15px 0px", justifyContent: "center", alignItems: "center", height: "30%", marginBottom: "7%"
             }}>
                 <label className="label-ip">Dirección IPv4:</label>
-                <IpInput />
+                <IpInput octetos={agentIp} setOctetos={setAgentIp} />
                 <label className="label-ip">Puerto:</label>
-                <PortInput />
+                <PortInput puerto={agentPort} setPuerto={setAgentPort} />
             </div>
         </div>
     );
 }
 
-export function WebLocation({ }) {
+export function WebLocation({ webIp, setWebIp, webPort, setWebPort }) {
     return (
         <div className='item' style={{ justifyContent: "space-between" }}>
             <div style={{
@@ -123,18 +119,91 @@ export function WebLocation({ }) {
                 gap: "15px 0px", justifyContent: "center", alignItems: "center", height: "30%", marginBottom: "7%"
             }}>
                 <label className="label-ip">Dirección IPv4:</label>
-                <IpInput />
+                <IpInput octetos={webIp} setOctetos={setWebIp} />
                 <label className="label-ip">Puerto:</label>
-                <PortInput />
+                <PortInput puerto={webPort} setPuerto={setWebPort} />
             </div>
         </div>
     );
 }
 
-
-export function PlayLoading({ }) {
+export function PlayLoading({ rutaCarpeta, webIp, webPort, agentIp, agentPort, actualAgent, setIsStarted, setVulnList }) {
 
     const [play, setPlay] = useState(0);
+
+    //! IMPORTANTE PIPELINE
+    const play_action = async () => {
+        setPlay(1);
+
+        // 1. Ejecuta análisis SAST
+        const resultSast = await window.electronAPI.ejecutarSast(rutaCarpeta);
+
+        if (resultSast.success) {
+
+            // 2. Procesa resultado y limpia contenido
+            const resultJson = await window.electronAPI.procesarJson(webIp, webPort, actualAgent);
+
+            // 3. Procesa jerarquía proyecto y la envía
+            const resultTree = await window.electronAPI.sendTreemap(rutaCarpeta, agentIp, agentPort);
+
+            // 4. Levanta servidor que provee archivos
+            const resultServer = await window.electronAPI.openServer(rutaCarpeta);
+
+
+            if (resultJson.success && resultTree.success) {
+                console.log('¡Análisis y limpieza completados!');
+
+                // 5. Actualiza la pantalla mostrando los errores
+                console.log(resultJson.payload.results)
+                setVulnList(resultJson.payload.results)
+                setIsStarted(true)
+
+                return;
+
+                const { ip_web, port_web, agent_model } = resultJson.payload
+
+                for (let i = 0; i < resultJson.payload.results.length; i++) {
+                    // 6. Extrae contexto vulnerabilidad
+                    const resultCode = await window.electronAPI.extraerCode(resultJson.payload.results[i].path, resultJson.payload.results[i].line);
+
+                    if (resultCode.success) {
+                        console.log('Extraido codigo vuln')
+                        console.log(resultCode.payload)
+
+                        const vulnJson = {
+                            ip_web,
+                            port_web,
+                            agent_model,
+                            vulnerability: resultJson.payload.results[i],
+                            code: resultCode.payload
+                        };
+
+                        console.log(vulnJson)
+
+                        // 7. Envía resultado
+                        const post_n8n = await window.electronAPI.postN8n(agentIp, agentPort, vulnJson);
+
+                        if (post_n8n.success) {
+                            console.log(post_n8n.serverResponse)
+
+                            setVulnList(prevLista => {
+                                const nuevaLista = [...prevLista];
+                                nuevaLista[i] = {
+                                    ...nuevaLista[i],
+                                    ...post_n8n.serverResponse
+                                };
+                                return nuevaLista;
+                            });
+                        }
+                    }
+                }
+            }
+
+        } else {
+            console.log(`Error en el análisis: ${resultSast.error}`);
+            setPlay(0);
+        }
+    };
 
     return (
         <div className='play-section'>
@@ -148,7 +217,7 @@ export function PlayLoading({ }) {
                 <img className='play_button'
                     src="src/assets/play.png"
                     style={{ width: "25%", height: "25%", objectFit: "contain", display: "block" }}
-                    onClick={() => setPlay(1)}
+                    onClick={() => play_action()}
                     alt="Imagen play" />
             )}
 
@@ -156,9 +225,7 @@ export function PlayLoading({ }) {
     );
 }
 
-function IpInput({ }) {
-    const [octetos, setOctetos] = useState(["127", "0", "0", "1"]);
-
+function IpInput({ octetos, setOctetos }) {
     const inputsRef = useRef([]);
 
     const manejarCambio = (index, e) => {
@@ -202,8 +269,7 @@ function IpInput({ }) {
     );
 }
 
-function PortInput({ }) {
-    const [puerto, setPuerto] = useState("5000");
+function PortInput({ puerto, setPuerto }) {
 
     const manejarCambioPuerto = (e) => {
         const valor = e.target.value.replace(/\D/g, ""); // Solo números

@@ -1,0 +1,487 @@
+{
+  "ip_web": "127.0.0.1",
+  "port_web": 4280,
+  "agent_model": "Gemini",
+  "results": [
+    {
+      "check_id": "yaml.github-actions.security.run-shell-injection.run-shell-injection",
+      "path": "/home/angel/VSProjects/DVWA/.github/workflows/docker-image.yml",
+      "line": 29,
+      "message": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+      "cwe": [
+        "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "HIGH",
+      "confidence": "HIGH"
+    },
+    {
+      "check_id": "php.lang.security.phpinfo-use.phpinfo-use",
+      "path": "/home/angel/VSProjects/DVWA/phpinfo.php",
+      "line": 8,
+      "message": "The 'phpinfo' function may reveal sensitive information about your environment.",
+      "cwe": [
+        "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor"
+      ],
+      "impact": "MEDIUM",
+      "likelihood": "MEDIUM",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.exec-use.exec-use",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/api/src/HealthController.php",
+      "line": 88,
+      "message": "Executing non-constant commands. This can lead to command injection.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.injection.tainted-sql-string.tainted-sql-string",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/bac/source/medium.php",
+      "line": 21,
+      "message": "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`$mysqli->prepare(\"INSERT INTO test(id, label) VALUES (?, ?)\");`) or a safe library.",
+      "cwe": [
+        "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+      ],
+      "impact": "MEDIUM",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.injection.tainted-sql-string.tainted-sql-string",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/bac/source/medium.php",
+      "line": 28,
+      "message": "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`$mysqli->prepare(\"INSERT INTO test(id, label) VALUES (?, ?)\");`) or a safe library.",
+      "cwe": [
+        "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+      ],
+      "impact": "MEDIUM",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.injection.tainted-sql-string.tainted-sql-string",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/bac/source/medium.php",
+      "line": 71,
+      "message": "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`$mysqli->prepare(\"INSERT INTO test(id, label) VALUES (?, ?)\");`) or a safe library.",
+      "cwe": [
+        "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+      ],
+      "impact": "MEDIUM",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.md5-loose-equality.md5-loose-equality",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/brute/source/high.php",
+      "line": 22,
+      "message": "Make sure comparisons involving md5 values are strict (use `===` not `==`) to avoid type juggling issues",
+      "cwe": [
+        "CWE-697: Incorrect Comparison"
+      ],
+      "impact": "LOW",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.injection.tainted-sql-string.tainted-sql-string",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/brute/source/low.php",
+      "line": 12,
+      "message": "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`$mysqli->prepare(\"INSERT INTO test(id, label) VALUES (?, ?)\");`) or a safe library.",
+      "cwe": [
+        "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+      ],
+      "impact": "MEDIUM",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.md5-loose-equality.md5-loose-equality",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/brute/source/low.php",
+      "line": 15,
+      "message": "Make sure comparisons involving md5 values are strict (use `===` not `==`) to avoid type juggling issues",
+      "cwe": [
+        "CWE-697: Incorrect Comparison"
+      ],
+      "impact": "LOW",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.md5-loose-equality.md5-loose-equality",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/captcha/source/impossible.php",
+      "line": 46,
+      "message": "Make sure comparisons involving md5 values are strict (use `===` not `==`) to avoid type juggling issues",
+      "cwe": [
+        "CWE-697: Incorrect Comparison"
+      ],
+      "impact": "LOW",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.md5-loose-equality.md5-loose-equality",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/cryptography/source/ecb_attack.php",
+      "line": 92,
+      "message": "Make sure comparisons involving md5 values are strict (use `===` not `==`) to avoid type juggling issues",
+      "cwe": [
+        "CWE-697: Incorrect Comparison"
+      ],
+      "impact": "LOW",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.md5-loose-equality.md5-loose-equality",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/cryptography/source/ecb_attack.php",
+      "line": 92,
+      "message": "Make sure comparisons involving md5 values are strict (use `===` not `==`) to avoid type juggling issues",
+      "cwe": [
+        "CWE-697: Incorrect Comparison"
+      ],
+      "impact": "LOW",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.md5-loose-equality.md5-loose-equality",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/csrf/test_credentials.php",
+      "line": 23,
+      "message": "Make sure comparisons involving md5 values are strict (use `===` not `==`) to avoid type juggling issues",
+      "cwe": [
+        "CWE-697: Incorrect Comparison"
+      ],
+      "impact": "LOW",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.exec-use.exec-use",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/high.php",
+      "line": 26,
+      "message": "Executing non-constant commands. This can lead to command injection.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.tainted-exec.tainted-exec",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/high.php",
+      "line": 26,
+      "message": "Executing non-constant commands. This can lead to command injection. You should use `escapeshellarg()` when using command.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.exec-use.exec-use",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/high.php",
+      "line": 30,
+      "message": "Executing non-constant commands. This can lead to command injection.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.tainted-exec.tainted-exec",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/high.php",
+      "line": 30,
+      "message": "Executing non-constant commands. This can lead to command injection. You should use `escapeshellarg()` when using command.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.exec-use.exec-use",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/impossible.php",
+      "line": 22,
+      "message": "Executing non-constant commands. This can lead to command injection.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.tainted-exec.tainted-exec",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/impossible.php",
+      "line": 22,
+      "message": "Executing non-constant commands. This can lead to command injection. You should use `escapeshellarg()` when using command.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.exec-use.exec-use",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/impossible.php",
+      "line": 26,
+      "message": "Executing non-constant commands. This can lead to command injection.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.tainted-exec.tainted-exec",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/impossible.php",
+      "line": 26,
+      "message": "Executing non-constant commands. This can lead to command injection. You should use `escapeshellarg()` when using command.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.exec-use.exec-use",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/low.php",
+      "line": 10,
+      "message": "Executing non-constant commands. This can lead to command injection.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.tainted-exec.tainted-exec",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/low.php",
+      "line": 10,
+      "message": "Executing non-constant commands. This can lead to command injection. You should use `escapeshellarg()` when using command.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.exec-use.exec-use",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/low.php",
+      "line": 14,
+      "message": "Executing non-constant commands. This can lead to command injection.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.tainted-exec.tainted-exec",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/low.php",
+      "line": 14,
+      "message": "Executing non-constant commands. This can lead to command injection. You should use `escapeshellarg()` when using command.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.exec-use.exec-use",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/medium.php",
+      "line": 19,
+      "message": "Executing non-constant commands. This can lead to command injection.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.tainted-exec.tainted-exec",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/medium.php",
+      "line": 19,
+      "message": "Executing non-constant commands. This can lead to command injection. You should use `escapeshellarg()` when using command.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.exec-use.exec-use",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/medium.php",
+      "line": 23,
+      "message": "Executing non-constant commands. This can lead to command injection.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.tainted-exec.tainted-exec",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/exec/source/medium.php",
+      "line": 23,
+      "message": "Executing non-constant commands. This can lead to command injection. You should use `escapeshellarg()` when using command.",
+      "cwe": [
+        "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.md5-loose-equality.md5-loose-equality",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/javascript/index.php",
+      "line": 43,
+      "message": "Make sure comparisons involving md5 values are strict (use `===` not `==`) to avoid type juggling issues",
+      "cwe": [
+        "CWE-697: Incorrect Comparison"
+      ],
+      "impact": "LOW",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.md5-loose-equality.md5-loose-equality",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/javascript/index.php",
+      "line": 57,
+      "message": "Make sure comparisons involving md5 values are strict (use `===` not `==`) to avoid type juggling issues",
+      "cwe": [
+        "CWE-697: Incorrect Comparison"
+      ],
+      "impact": "LOW",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.injection.tainted-sql-string.tainted-sql-string",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/sqli/source/low.php",
+      "line": 10,
+      "message": "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`$mysqli->prepare(\"INSERT INTO test(id, label) VALUES (?, ?)\");`) or a safe library.",
+      "cwe": [
+        "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+      ],
+      "impact": "MEDIUM",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.injection.tainted-sql-string.tainted-sql-string",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/sqli/source/low.php",
+      "line": 31,
+      "message": "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`$mysqli->prepare(\"INSERT INTO test(id, label) VALUES (?, ?)\");`) or a safe library.",
+      "cwe": [
+        "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+      ],
+      "impact": "MEDIUM",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.injection.tainted-sql-string.tainted-sql-string",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/sqli_blind/source/high.php",
+      "line": 11,
+      "message": "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`$mysqli->prepare(\"INSERT INTO test(id, label) VALUES (?, ?)\");`) or a safe library.",
+      "cwe": [
+        "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+      ],
+      "impact": "MEDIUM",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.injection.tainted-sql-string.tainted-sql-string",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/sqli_blind/source/high.php",
+      "line": 33,
+      "message": "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`$mysqli->prepare(\"INSERT INTO test(id, label) VALUES (?, ?)\");`) or a safe library.",
+      "cwe": [
+        "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+      ],
+      "impact": "MEDIUM",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.injection.tainted-sql-string.tainted-sql-string",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/sqli_blind/source/low.php",
+      "line": 11,
+      "message": "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`$mysqli->prepare(\"INSERT INTO test(id, label) VALUES (?, ?)\");`) or a safe library.",
+      "cwe": [
+        "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+      ],
+      "impact": "MEDIUM",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.injection.tainted-sql-string.tainted-sql-string",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/sqli_blind/source/low.php",
+      "line": 32,
+      "message": "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`$mysqli->prepare(\"INSERT INTO test(id, label) VALUES (?, ?)\");`) or a safe library.",
+      "cwe": [
+        "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+      ],
+      "impact": "MEDIUM",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.injection.tainted-sql-string.tainted-sql-string",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/sqli_blind/source/medium.php",
+      "line": 34,
+      "message": "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`$mysqli->prepare(\"INSERT INTO test(id, label) VALUES (?, ?)\");`) or a safe library.",
+      "cwe": [
+        "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+      ],
+      "impact": "MEDIUM",
+      "likelihood": "HIGH",
+      "confidence": "MEDIUM"
+    },
+    {
+      "check_id": "php.lang.security.eval-use.eval-use",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/view_help.php",
+      "line": 20,
+      "message": "Evaluating non-constant commands. This can lead to command injection.",
+      "cwe": [
+        "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    },
+    {
+      "check_id": "php.lang.security.eval-use.eval-use",
+      "path": "/home/angel/VSProjects/DVWA/vulnerabilities/view_help.php",
+      "line": 22,
+      "message": "Evaluating non-constant commands. This can lead to command injection.",
+      "cwe": [
+        "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')"
+      ],
+      "impact": "HIGH",
+      "likelihood": "LOW",
+      "confidence": "LOW"
+    }
+  ]
+}

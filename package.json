@@ -14,12 +14,14 @@
     "@heroui/dropdown": "^2.3.29",
     "@heroui/react": "^2.8.7",
     "electron": "^40.0.0",
+    "express": "^5.2.1",
     "framer-motion": "^12.27.2",
     "lucide-react": "^0.562.0",
     "rc-dropdown": "^4.2.1",
     "rc-menu": "^9.16.1",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-syntax-highlighter": "^16.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

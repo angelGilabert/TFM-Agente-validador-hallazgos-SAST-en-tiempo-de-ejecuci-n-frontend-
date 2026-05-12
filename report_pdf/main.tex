@@ -1,0 +1,200 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+% --- 1. QUITAR SANGRÍA Y MEJORAR PÁRRAFOS ---
+\usepackage{parskip}
+
+% --- 2. COLORES ---
+\usepackage[dvipsnames,table]{xcolor}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+
+% --- 3. FUENTES Y GRÁFICOS ---
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12}
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{sectsty}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+% --- 4. CONFIGURACIÓN DE CÓDIGO ---
+\usepackage{listings}
+
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+keywordstyle=\ttb\color{deepblue},
+stringstyle=\color{deepgreen},
+frame=tb,
+showstringspaces=false
+}}
+\lstnewenvironment{python}[1][]{\pythonstyle\lstset{#1}}{}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\usepackage[most]{tcolorbox}
+
+\usepackage{pgf-pie}
+\usetikzlibrary{shadows}
+\usetikzlibrary{shadows.blur}
+
+\usepackage[T1]{fontenc}
+
+% Definición de colores
+\definecolor{danger}{HTML}{E74C3C}
+\definecolor{low}{HTML}{D5F5E3}
+\definecolor{medium}{HTML}{FCF3CF}
+\definecolor{darkgray}{HTML}{2C3E50}
+\definecolor{lightgray}{HTML}{F8F9F9}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    {\includegraphics[width=0.8\textwidth]{logos.png}\par}
+    
+    \vspace{2cm}
+    
+    {\scshape\Large AGENTE VALIDADOR DE HALLAZGOS SAST \par}
+    {\scshape\Large EN TIEMPO DE EJECUCIÓN \par}
+    
+    \vspace{1.5cm}
+    
+    % --- LÍNEA DECORATIVA ---
+    \rule{\linewidth}{0.2mm} \\[1cm]
+    
+    % --- TÍTULO PRINCIPAL ---
+    {\Huge \bfseries REPORTE DE VULNERABILIDADES \par}
+    \vspace{1cm}
+    
+    {\huge Proyecto: \colorbox{black!5}{\hspace{0.3cm}\texttt{\textbf{DVWA}}\hspace{0.3cm}}} \par
+    \vspace{0.4cm}
+
+    % --- LÍNEA DECORATIVA ---
+    \rule{\linewidth}{0.2mm} \\[2cm]
+
+    \vfill
+    \vspace{2cm}
+
+    % --- FECHA ---
+    {\large \today \par} 
+
+\end{titlepage}
+
+\newpage
+
+\newpage
+\section{Resumen Ejecutivo de Seguridad}
+
+\begin{tcolorbox}[
+    width=0.7\textwidth,
+    colback=gray!5!white, 
+    colframe=gray!75!black, 
+    title=\textbf{Configuración del Análisis},
+    fonttitle=\bfseries,
+    toptitle=6pt, bottomtitle=6pt,
+    arc=3pt, boxrule=0.5pt,
+    left=10pt, right=10pt, top=8pt, bottom=10pt
+]
+    \textbf{Analizador SAST:} \hspace{1em} \texttt{semgrep Community edition}\\[2pt]
+    \textbf{Agente utilizado:} \hspace{1em} \texttt{Gemini}\\[2pt]
+    \textbf{Modelo IA:} \hspace{1em} \texttt{gemini-2.5-flash}\\[2pt]
+    \textbf{Proyecto analizado:} \hspace{1em} \texttt{DVWA}
+\end{tcolorbox}
+
+\subsection{Vulnerabilidades detectadas}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \pie[color={gray!30, red!95!black}, 
+            text=pin,
+            sum=43,               
+            radius=2.5,
+            font=\bfseries
+        ]{
+            43/Seguros, 
+            0/Vulnerables
+        }
+    \end{tikzpicture}
+\end{figure}
+
+\subsection{Categorías más frecuentes}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        ybar,
+        enlarge x limits=0.25,
+        legend style={at={(0.5,-0.2)}, anchor=north, legend columns=-1},
+        ylabel={Vulnerabilidades demostradas},
+        symbolic x coords={},
+        xtick=data,
+        nodes near coords,
+        nodes near coords align={vertical},
+        bar width=25pt,
+        width=\textwidth,
+        height=7cm,
+        axis x line*=bottom,
+        axis y line*=left,
+        ymajorgrids=true,
+        grid style=dashed
+    ]
+    \addplot[fill=deepblue!70, draw=deepblue] coordinates {
+        
+    };
+    \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+\newpage
+\subsection{Vulnerabilidades por archivo}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        xbar,
+        width=0.67\textwidth,
+        height={0 * 2cm},
+        enlarge y limits=0.2,
+        xmin=0,
+        symbolic y coords={},
+        ytick=data,  
+        xtick=\empty,
+        axis line style={draw=none},
+        yticklabel style={
+            text width=0.3\textwidth,  
+            align=left,    
+            font=\large\bfseries,
+            xshift=-0.2cm   
+        },    
+        yticklabels={},
+        nodes near coords,      
+        nodes near coords align={horizontal},
+        bar width=15pt,
+        axis x line*=bottom,
+        axis y line*=left,
+        xmajorgrids=true,
+        grid style=dashed
+    ]
+    \addplot[fill=orange!80!black, draw=orange!40!black] coordinates {
+        
+    };
+    \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+\end{document}
